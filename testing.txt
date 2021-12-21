@@ -1,0 +1,146 @@
+Public Class Pizza
+    Private cost As Decimal
+    Private answer As Integer
+    Private size As String
+    Private toppings As String
+    Private PickupDelivery As String
+    Private numberToppings As Integer
+    Private Sub btnOrder_Click(sender As Object, e As EventArgs) Handles btnOrder.Click
+
+        cost = cost + numberToppings * 0.75
+
+        answer = MessageBox.Show("Order for " & txtName.Text & vbCrLf & size & " Pizza for " & PickupDelivery & " with" & vbTab & vbCrLf & toppings & vbCrLf & vbCrLf & " Total-" & FormatCurrency(cost) & vbCrLf & vbCrLf & " Is this order correct? ", "Verify Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If answer = vbYes Then
+            MessageBox.Show("Order Placed", "PIZZA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            chkPepperoni.Checked = False
+            chkMushrooms.Checked = False
+            chkOnions.Checked = False
+            chkSausage.Checked = False
+            chkGreenPeppers.Checked = False
+            chkExtraCheese.Checked = False
+            rdnPickup.Checked = False
+            rdnDelivery.Checked = False
+            rdnSmall.Checked = False
+            rdnMedium.Checked = False
+            rdnLarge.Checked = False
+            numberToppings = 0
+            size = ""
+            toppings = ""
+            PickupDelivery = ""
+        End If
+        If answer = vbNo Then
+            chkPepperoni.Checked = False
+            chkMushrooms.Checked = False
+            chkOnions.Checked = False
+            chkSausage.Checked = False
+            chkGreenPeppers.Checked = False
+            chkExtraCheese.Checked = False
+            rdnPickup.Checked = False
+            rdnDelivery.Checked = False
+            rdnSmall.Checked = False
+            rdnMedium.Checked = False
+            rdnLarge.Checked = False
+            numberToppings = 0
+            size = ""
+            toppings = ""
+            PickupDelivery = ""
+        End If
+    End Sub
+
+    Private Sub Pizza_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        numberToppings = 0
+    End Sub
+
+    Private Sub chkPepperoni_CheckedChanged(sender As Object, e As EventArgs) Handles chkPepperoni.CheckedChanged
+        numberToppings = 1
+        toppings = toppings + " Pepperoni"
+    End Sub
+
+    Private Sub chkSausage_CheckedChanged(sender As Object, e As EventArgs) Handles chkSausage.CheckedChanged
+        numberToppings = 1
+        toppings = toppings + " Sausage"
+    End Sub
+
+    Private Sub chkMushrooms_CheckedChanged(sender As Object, e As EventArgs) Handles chkMushrooms.CheckedChanged
+        numberToppings = 1
+        toppings = toppings + " Mushrooms"
+    End Sub
+
+    Private Sub chkGreenPeppers_CheckedChanged(sender As Object, e As EventArgs) Handles chkGreenPeppers.CheckedChanged
+        numberToppings = 1
+        toppings = toppings + " Green Peppers"
+    End Sub
+
+    Private Sub chkExtraCheese_CheckedChanged(sender As Object, e As EventArgs) Handles chkExtraCheese.CheckedChanged
+        numberToppings = 1
+        toppings = toppings + " Extra Cheese"
+    End Sub
+
+    Private Sub rdnSmall_CheckedChanged(sender As Object, e As EventArgs) Handles rdnSmall.CheckedChanged
+        cost = 6
+        size = "Small"
+    End Sub
+
+    Private Sub rdnMedium_CheckedChanged(sender As Object, e As EventArgs) Handles rdnMedium.CheckedChanged
+        cost = 8
+        size = "Medium"
+    End Sub
+
+    Private Sub rdnLarge_CheckedChanged(sender As Object, e As EventArgs) Handles rdnLarge.CheckedChanged
+        cost = 10
+        size = "Large"
+    End Sub
+
+    Private Sub rdnDelivery_CheckedChanged(sender As Object, e As EventArgs) Handles rdnDelivery.CheckedChanged
+        txtAddress.Visible = True
+        lblInfo.Visible = True
+        PickupDelivery = "Delivery"
+    End Sub
+
+    Private Sub rdnPickup_CheckedChanged(sender As Object, e As EventArgs) Handles rdnPickup.CheckedChanged
+        txtAddress.Visible = False
+        lblInfo.Visible = False
+        PickupDelivery = "Pick up"
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        chkPepperoni.Checked = False
+        chkMushrooms.Checked = False
+        chkOnions.Checked = False
+        chkSausage.Checked = False
+        chkGreenPeppers.Checked = False
+        chkExtraCheese.Checked = False
+        rdnPickup.Checked = False
+        rdnDelivery.Checked = False
+        rdnSmall.Checked = False
+        rdnMedium.Checked = False
+        rdnLarge.Checked = False
+        numberToppings = 0
+        size = ""
+        toppings = ""
+        PickupDelivery = ""
+    End Sub
+    Private Sub checkfortoppings()
+        If chkExtraCheese.Checked Then
+            toppings = "Extra Cheese"
+        End If
+        If chkGreenPeppers.Checked Then
+            toppings = "Green Peppers"
+
+        End If
+        If chkMushrooms.Checked Then
+            toppings = "Mushrooms"
+        End If
+        If chkOnions.Checked Then
+            toppings = "Onions"
+        End If
+        If chkSausage.Checked Then
+            toppings = "Sausage"
+        End If
+        If chkPepperoni.Checked Then
+            toppings = "Pepperoni"
+        End If
+
+    End Sub
+End Class
